@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main(int argc,char* argv[]){
+
+FILE *fp=fopen(argv[1],"r");
+char c[100];
+int count=0;
+while(1){
+c[count]=fgetc(fp);
+if(c[count]==EOF)
+break;
+count++;
+}
+printf("File 1 contents are : ");
+for(int i=0;i<count;i++){
+printf("%c",c[i]);
+}
+fclose(fp);
+
+FILE* fp2=fopen(argv[2],"r");
+printf("\nFile 2 contents are :");
+
+while(1){
+c[count]=fgetc(fp2);
+if(c[count]==EOF)
+break;
+printf("%c",c[count]);
+count++;
+}
+fclose(fp2);
+
+// write data to first file
+printf("\nWriting data to first file ! ");
+FILE *fp3=fopen(argv[1],"w");
+for(int i=0;i<count;i++){
+fputc(c[i],fp3);
+}
+
+printf("\nWritten successfully\n");
+fclose(fp3);
+
+printf("\nUpdated file 1 contents are :");
+FILE* fp4=fopen(argv[1],"r");
+char cc;
+while(1){
+cc=fgetc(fp4);
+if(cc==EOF)
+break;
+printf("%c",cc);
+}
+fclose(fp4);
+}
