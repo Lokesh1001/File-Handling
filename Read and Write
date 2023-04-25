@@ -1,0 +1,30 @@
+#include<stdio.h>
+// author @Lokesh_Bhargava
+int main(){
+
+FILE *fp=fopen("file1.txt","r");
+char c[100];
+int count=0;
+while(1){
+c[count]=fgetc(fp);
+if(c[count]==EOF)
+break;
+else
+count++;
+}
+printf("File 1 contents are : ");
+for(int i=0;i<count;i++){
+printf("%c",c[i]);
+}
+fclose(fp);
+
+// write data to file2
+printf("\nWriting data to file2.txt ! ");
+FILE *fp2=fopen("file2.txt","w");
+for(int i=0;i<count;i++){
+fputc(c[i],fp2);
+}
+
+printf("\nWritten successfully\n");
+fclose(fp2);
+}
